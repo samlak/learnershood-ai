@@ -129,7 +129,7 @@ function VoiceRecordModal({ isOpen, onClose, onTranscription }) {
 
         setTimeout(() => {
           setIsProcessing(false);
-          onTranscription("Tell me about the tortoise and the birds");
+          onTranscription("Demo Text: Tell me about Hanno the Navigator");
           onClose();
         }, 2000);
       };
