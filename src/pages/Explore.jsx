@@ -2,6 +2,8 @@ import { motion } from 'framer-motion';
 import { Search } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import LoadingSpinner from '../components/LoadingSpinner';
+
 
 function Explore() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -77,33 +79,40 @@ function Explore() {
           <Search className="absolute right-4 top-1/2 transform -translate-y-1/2 w-6 h-6 text-gray-400" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredStories.map((story) => (
-            <Link key={story._id} to={`/story/${story._id}`}>
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer"
-              >
-                <div className="relative h-48">
-                  <img
-                    src={story.thumbnail}
-                    alt={story.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
-                    <span className="text-white text-sm">{story.duration}</span>
+        {!stories.length ?
+          <div className="flex flex-col items-center justify-center py-12">
+            <LoadingSpinner size="lg" />
+            <p className="mt-4 text-gray-600">Loading stories...</p>
+          </div>
+        :
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredStories.map((story) => (
+              <Link key={story._id} to={`/story/${story._id}`}>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  className="bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer"
+                >
+                  <div className="relative h-48">
+                    <img
+                      src={story.thumbnail}
+                      alt={story.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+                      <span className="text-white text-sm">{story.duration}</span>
+                    </div>
                   </div>
-                </div>
-                <div className="p-4">
-                  <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                    {story.title}
-                  </h3>
-                  <p className="text-gray-600">{story.description}</p>
-                </div>
-              </motion.div>
-            </Link>
-          ))}
-        </div>
+                  <div className="p-4">
+                    <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                      {story.title}
+                    </h3>
+                    <p className="text-gray-600">{story.description}</p>
+                  </div>
+                </motion.div>
+              </Link>
+            ))}
+          </div>
+        }
       </div>
     </motion.div>
   );
