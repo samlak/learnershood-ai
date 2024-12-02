@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Home, BookOpen, Menu } from 'lucide-react';
+import { Home, BookOpen } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 function Navbar() {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { RefreshCw } from "lucide-react";
 import { saveStory } from "../utils/storage";
 import { motion } from "framer-motion";
@@ -167,7 +167,26 @@ function Loading() {
           <h2 className="text-2xl font-bold text-indigo-600 mb-2">
             Creating your story
           </h2>
-          <p className="text-gray-600">Please wait while we work our magic</p>
+          {/* <p className="text-gray-600">Please wait while we work our magic</p> */}
+
+          <p className="text-red-600 font-semibold">We currently have issue with generating stories</p>
+          <p className="font-semibold mt-1">
+            {"You can "}
+            <Link
+              to="/explore"
+              className="underline text-indigo-600 hover:font-bold"
+            >
+              Explore other Generated Stories
+            </Link> 
+            {" or check our "}
+            <a 
+              href="https://www.loom.com/share/c47d8932ec294718a9862c229965bc55?sid=5bbb3f8a-b224-4172-b3c0-1f9b841bcf83" 
+              target="_blank"
+              className="underline text-indigo-600 hover:font-bold"
+            >
+              Demo Video
+            </a>
+          </p>
         </div>
 
         <div className="space-y-4">
